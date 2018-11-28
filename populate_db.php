@@ -1,39 +1,13 @@
 <?php
-//connecting to the db
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=sequenceShare;charset=utf8', 'root', 'root',
-    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    echo "connected ";
-}
-catch (Exception $e)
-{
-    die('Erreur : ' . $e->getMessage());
-}
-//inserting two new members
-$req = $bdd->prepare(
-    "INSERT INTO members(mail,pseudo,first_name,last_name,pwd_hash)
-    VALUES('dumb@gmail.com','george33','Georges','Fabius',?)"
-);
-$req->execute(array(password_hash("123456",PASSWORD_DEFAULT)));
+include(dirname(__FILE__)."/src/modules/manage_sequence.php");
+include(dirname(__FILE__)."/src/modules/manage_members.php");
 
-$req = $bdd->prepare(
-    "INSERT INTO members(mail,pseudo,first_name,last_name,pwd_hash)
-    VALUES('rand@hotmail.fr','johndoe','John','Doe',?)"
-);
-$req->execute(array(password_hash("azertyiop",PASSWORD_DEFAULT)));
+//inserting two new members
+create_member('dumb@gmail.com','george33','Georges','Fabius','123456');
+create_member('rand@hotmail.fr','johndoe','John','Doe','azertyuiop');
 
 //creating a new sequence for John Doe
-$res = $bdd->query(
-    "SELECT id FROM members WHERE pseudo='johndoe'"
-);
-$id = ($res->fetch())['id'];
-
-$req = $bdd->prepare(
-    "INSERT INTO sequences(member_id,name,description)
-    VALUES(?,'Prime numbers','A list of prime numbers')"
-);
-$req->execute(array($id));
+create_sequence("Prime numbers","johndoe","This is a list of prime numbers");
 
 //declaring helper functions for generating prime numbers
 function anyDivides($testedNumber,$testNumbers){
@@ -65,19 +39,7 @@ while ($lastPrime<$roof){
 }
 
 //inserting those primes in the db
-$idx=0;
-$res = $bdd->query(
-    "SELECT id FROM sequences WHERE name='Prime numbers'"
-);
-$id = ($res->fetch())['id'];
+add_numbers("Prime numbers",$primes);
 
-foreach($primes as $prime){
-    $req = $bdd->prepare(
-        "INSERT INTO numbers(value,sequence_idx,sequence_id)
-        VALUES(?,?,?)"
-    );
-    $req->execute(array($prime,$idx,$id)); 
-    $idx+=1;
-}
 echo "done";
 ?>
