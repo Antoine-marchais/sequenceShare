@@ -1,6 +1,6 @@
 <?php
-include(dirname(__FILE__)."/src/modules/manage_sequence.php");
-include(dirname(__FILE__)."/src/modules/manage_members.php");
+require_once(dirname(__FILE__)."/src/modules/manage_sequence.php");
+require_once(dirname(__FILE__)."/src/modules/manage_members.php");
 
 //inserting two new members
 create_member('dumb@gmail.com','george33','Georges','Fabius','123456');
