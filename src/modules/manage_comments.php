@@ -28,7 +28,7 @@ function add_comment($text,$member_pseudo,$sequence_name){
     $req = $bdd->prepare(
         "SELECT id FROM members WHERE pseudo = ?"
     );
-    $req->execute(array($sequence_name));
+    $req->execute(array($member_pseudo));
     $member_id = ($req->fetch())["id"];
     $req = $bdd->prepare(
         "INSERT INTO comments(sequence_id,member_id,content)

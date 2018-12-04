@@ -1,6 +1,7 @@
 <?php
-require_once(dirname(__FILE__)."/src/modules/manage_sequence.php");
-require_once(dirname(__FILE__)."/src/modules/manage_members.php");
+require(dirname(__FILE__)."/src/modules/manage_sequence.php");
+require(dirname(__FILE__)."/src/modules/manage_members.php");
+require(dirname(__FILE__)."/src/modules/manage_comments.php");
 
 //inserting two new members
 create_member('dumb@gmail.com','george33','Georges','Fabius','123456');
@@ -42,4 +43,8 @@ while ($lastPrime<$roof){
 add_numbers("Prime numbers",$primes);
 
 echo "done";
+
+//adding comments on that sequence
+add_comment("This sequence rocks","george33","Prime numbers");
+add_comment("damn right it does","johndoe","Prime numbers");
 ?>
