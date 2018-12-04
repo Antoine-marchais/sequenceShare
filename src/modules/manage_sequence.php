@@ -46,15 +46,26 @@ function add_numbers($sequence_name,$numbers){
 function get_sequence($name){
     $bdd = connect_db();
     $req = $bdd->prepare(
-        "SELECT n.* FROM numbers n INNER JOIN sequences s 
-        ON n.sequence_id = s.id WHERE s.name = ?"
+        "SELECT * FROM sequences WHERE name = ?"
     );
     $req->execute(array($name));
-    $numbers = array();
+    $res = $req->fetch();
+    $sequence = array(
+        "description"=> $res["description"],
+        "numbers"=> array());
+    $req = $bdd->prepare(
+        "SELECT * FROM numbers WHERE sequence_id = ?"
+    );
+    $req->execute(array($res["id"]));
     while ($res=$req->fetch()){
-        $numbers[] = $res['value'];
+        $sequence["numbers"][] = $res['value'];
     }
+    $req = $bdd->prepare(
+        "SELECT pseudo FROM members WHERE id=?"
+    );
+    $req->execute(array($res["member_id"]));
+    $sequence["author"] = ($req->fetch())["pseudo"];
     close_db($bdd);
-    return $numbers;
+    return $sequence;
 }
 ?>

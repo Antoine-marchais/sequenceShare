@@ -3,6 +3,6 @@ require(dirname(__FILE__)."/src/modules/manage_sequence.php");
 require(dirname(__FILE__)."/src/modules/manage_members.php");
 require(dirname(__FILE__)."/src/modules/manage_comments.php");
 
-$comments = get_comments("Prime numbers");
+$primes = get_sequence("Prime numbers");
 ?>
-<pre><?php print_r($comments); ?></pre>
+<pre><?php print_r($primes); ?></pre>

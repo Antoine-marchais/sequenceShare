@@ -1,0 +1,45 @@
+*{margin: 0px 0px 0px 0px}
+
+header{
+    display: flex;
+    background-color: goldenrod;
+    height: 120px;
+    box-shadow: 0px 0px 5px 0px
+}
+
+#content{
+    display: flex;
+}
+
+#sequence{
+    margin: 15px 15px 15px 15px;
+    flex:2.2
+}
+
+#sequenceDescription{
+    height: 140px;
+}
+
+#sequenceBody{
+    display : flex;
+    background-color: beige;
+    border-radius: 8px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-height: 280px;
+    overflow: scroll;
+    padding: 15px 15px 15px 15px;
+}
+
+.number{
+    margin: 10px 10px 10px 10px;
+    padding: 3px 8px 3px 8px;
+    width: auto;
+    background-color: chocolate;
+    color: white;
+    border-radius: 10px
+}
+
+#comments{
+    flex:1
+}
