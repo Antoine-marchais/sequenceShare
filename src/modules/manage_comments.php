@@ -10,8 +10,17 @@ function get_comments($sequence_name){
     );
     $req->execute(array($sequence_name));
     $comments = array();
-    while ($comment = $req->fetch()){
-        $comments[] = $comment;
+    while ($res = $req->fetch()){
+        $inner_req = $bdd->prepare(
+            "SELECT * FROM members WHERE id = ?"
+        );
+        $inner_req->execute(array($res["member_id"]));
+        $author = ($inner_req->fetch())["pseudo"];
+        $comments[] = array(
+            "author"=>$author,
+            "date"=>$res["timestamp"],
+            "text"=>$res["content"]
+        );
     }
     close_db($bdd);
     return $comments;

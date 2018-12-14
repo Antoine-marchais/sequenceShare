@@ -51,6 +51,7 @@ function get_sequence($name){
     $req->execute(array($name));
     $res = $req->fetch();
     $sequence = array(
+        "name"=> $res["name"],
         "description"=> $res["description"],
         "numbers"=> array());
     $req = $bdd->prepare(
