@@ -11,6 +11,7 @@ body {
 
 header{
     display: flex;
+    justify-content: space-between;
     width: 100%;
     background-color: goldenrod;
     height: 121px;
@@ -26,6 +27,7 @@ header{
 }
 
 #navbar{
+    flex:1;
     display: flex;
     margin: 0px 0px 0px 30px;
     align-items: center;
@@ -41,6 +43,15 @@ header{
 
 .navlink:hover{
     color: #0f0f57
+}
+
+#member_space{
+    display:flex;
+    flex-direction: column;
+}
+
+#visitorActions{
+    display: flex;
 }
 
 footer{

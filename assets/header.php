@@ -8,5 +8,10 @@
         <a class="navlink" href="sequenceList.php">Search</a>
     </div>
     <div id="member_space">
+        <p>You are not logged in</p>
+        <div id="visitorActions">
+            <a class="actionButton" href="register.php">Register</a>
+            <a class="actionButton" href="login_page.php">Login</a>
+        </div>
     </div>
 </header>
