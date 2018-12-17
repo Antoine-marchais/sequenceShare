@@ -13,7 +13,7 @@ $comments = get_comments($_GET["name"]);
     </head>
     <body>
         <?php include("../assets/header.php"); ?>
-        <div id="content">
+        <div class="content">
             <div id="sequence">
                 <div id="sequenceDescription">
                     <h2 class = "block-title"><?php echo $sequence["name"] ?></h2>

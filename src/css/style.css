@@ -63,7 +63,7 @@ footer{
     box-shadow: 0px 0px 5px 0px;
 }
 
-#content{
+.content{
     display: flex;
     height:100%;
     flex:1;
